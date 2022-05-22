@@ -13,7 +13,6 @@ class AbstractCollection(object):
         self._size = 0
         if sourceCollection:
             for item in sourceCollection:
-                print('+')
                 self.add(item)
 
     # Accessor methods

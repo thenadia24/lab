@@ -339,8 +339,7 @@ class LinkedBST(AbstractCollection):
 
         return result
 
-    @staticmethod
-    def demo_bst(path):
+    def demo_bst(self, path):
         """
         Demonstration of efficiency binary search tree for the search tasks.
         """
@@ -355,9 +354,7 @@ class LinkedBST(AbstractCollection):
                     break
                 words.append(i.replace('\n', ''))
 
-        print(len(words))
         bst_sorted = LinkedBST(words)
-        print('test')
         bst_random = LinkedBST(random.shuffle(words.copy()))
         bst_balanced = copy.deepcopy(bst_random)
         bst_balanced.rebalance()
@@ -365,32 +362,33 @@ class LinkedBST(AbstractCollection):
 
         timer = time.time()
         for word_to_find in words_to_find:
-            print(word_to_find in words)
-        first_time = time.time() - timer
+            status = word_to_find in words
+        first_time = round(time.time() - timer, 6)
 
         timer = time.time()
         for word_to_find in words_to_find:
-            print(word_to_find in bst_sorted)
-        second_time = time.time() - timer
+            status = word_to_find in bst_sorted
+        second_time = round(time.time() - timer, 6)
 
         timer = time.time()
         for word_to_find in words_to_find:
-            print(word_to_find in bst_random)
-        third_time = time.time() - timer
+            status = word_to_find in bst_random
+        third_time = round(time.time() - timer, 6)
 
         timer = time.time()
         for word_to_find in words_to_find:
-            print(word_to_find in bst_balanced)
-        fourth_time = time.time() - timer
+            status = word_to_find in bst_balanced
+        fourth_time = round(time.time() - timer, 6)
 
-        dota_teams = [f"{max_count}", "Sorted list", " Sorted tree", "Random tree", "Balanced tree"]
-        data = [['amount', first_time, second_time, third_time, fourth_time]]
-        format_row = "{:>12}" * (len(dota_teams) + 1)
-        print(format_row.format("", *dota_teams))
+        d = {max_count: [first_time, second_time, third_time, fourth_time]}
+        print("{:<8} {:<15} {:<15} {:<15} {:<15}".format(
+            'Count', 'Sorted list', 'Sorted tree', 'Random tree', 'Balanced tree'))
 
-        for team, row in zip(dota_teams, data):
-            print(format_row.format(team, *row))
+        for k, v in d.items():
+            first_time, second_time, third_time, fourth_time = v
+            print("{:<8} {:<15} {:<15} {:<15} {:<15}".format(k, first_time, second_time, third_time, fourth_time))
 
 
 if __name__ == '__main__':
-    LinkedBST.demo_bst('words.txt')
+    linked_bst = LinkedBST()
+    linked_bst.demo_bst('words.txt')
