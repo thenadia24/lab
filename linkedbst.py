@@ -381,12 +381,12 @@ class LinkedBST(AbstractCollection):
         fourth_time = round(time.time() - timer, 6)
 
         d = {max_count: [first_time, second_time, third_time, fourth_time]}
-        print("{:<8} {:<15} {:<15} {:<15} {:<15}".format(
-            'Count', 'Sorted list', 'Sorted tree', 'Random tree', 'Balanced tree'))
+        print("{:<20} {:<20} {:<20} {:<20} {:<20}".format(
+            'Количество', 'Сортированный список', 'Сортированное дерево', 'Случайное дерево', 'Дерево после баланса'))
 
         for k, v in d.items():
             first_time, second_time, third_time, fourth_time = v
-            print("{:<8} {:<15} {:<15} {:<15} {:<15}".format(k, first_time, second_time, third_time, fourth_time))
+            print("{:<20} {:<20} {:<20} {:<20} {:<20}".format(k, first_time, second_time, third_time, fourth_time))
 
 
 if __name__ == '__main__':
